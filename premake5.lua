@@ -5,8 +5,8 @@ project "GLFW"
     staticruntime "off"
 
     targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
-
+    objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")  
+    
     files
     {
         "include/GLFW/glfw3.h",
@@ -28,9 +28,8 @@ project "GLFW"
     }
 
     filter "system:linux"
-        pic "On"
-
         systemversion "latest"
+        pic "On"
         
         files
         {
@@ -86,4 +85,8 @@ project "GLFW"
     filter "configurations:Release"
         runtime "Release"
         optimize "on"
+    
+    filter "configurations:Dist"
+		runtime "Release"
+		optimize "on"
         symbols "off"
