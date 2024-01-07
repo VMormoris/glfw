@@ -941,6 +941,9 @@ extern "C" {
  */
 #define GLFW_POSITION_Y             0x0002000F
 
+#define GLFW_TITLEBAR               0x00020010
+
+
 /*! @brief Framebuffer bit depth hint.
  *
  *  Framebuffer bit depth [hint](@ref GLFW_RED_BITS).
@@ -1575,6 +1578,8 @@ typedef void (* GLFWerrorfun)(int error_code, const char* description);
  *  @ingroup window
  */
 typedef void (* GLFWwindowposfun)(GLFWwindow* window, int xpos, int ypos);
+
+typedef void (*GLFWtitlebarhittestfun)(GLFWwindow* windows, int xpos, int ypos, int* hit);
 
 /*! @brief The function pointer type for window size callbacks.
  *
@@ -4207,6 +4212,8 @@ GLFWAPI GLFWwindowsizefun glfwSetWindowSizeCallback(GLFWwindow* window, GLFWwind
  *  @ingroup window
  */
 GLFWAPI GLFWwindowclosefun glfwSetWindowCloseCallback(GLFWwindow* window, GLFWwindowclosefun callback);
+
+GLFWAPI GLFWtitlebarhittestfun glfwSetTitlebarHitTestCallback(GLFWwindow* window, GLFWtitlebarhittestfun callback);
 
 /*! @brief Sets the refresh callback for the specified window.
  *

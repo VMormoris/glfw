@@ -11,6 +11,7 @@ project "GLFW"
     {
         "include/GLFW/glfw3.h",
         "include/GLFW/glfw3native.h",
+
         "src/glfw_config.h",
         "src/context.c",
         "src/init.c",
@@ -26,6 +27,8 @@ project "GLFW"
         "src/vulkan.c",
         "src/window.c",
     }
+
+    includedirs { "include" }
 
     filter "system:linux"
         systemversion "latest"
