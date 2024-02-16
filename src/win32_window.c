@@ -2323,7 +2323,7 @@ void _glfwPollEventsWin32(void)
 
 void _glfwWaitEventsWin32(void)
 {
-    WaitMessage();
+    //WaitMessage();
 
     _glfwPollEventsWin32();
 }
