@@ -542,6 +542,8 @@ GLFWbool _glfwConnectCocoa(int platformID, _GLFWplatform* platform)
         .hideWindow = _glfwHideWindowCocoa,
         .requestWindowAttention = _glfwRequestWindowAttentionCocoa,
         .focusWindow = _glfwFocusWindowCocoa,
+        .dragWindow = _glfwDragWindowCocoa,
+        .resizeWindow = _glfwResizeWindowCocoa,
         .setWindowMonitor = _glfwSetWindowMonitorCocoa,
         .windowFocused = _glfwWindowFocusedCocoa,
         .windowIconified = _glfwWindowIconifiedCocoa,

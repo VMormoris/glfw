@@ -41,6 +41,7 @@
 #include <sys/timerfd.h>
 #include <poll.h>
 #include <linux/input-event-codes.h>
+#include <assert.h>
 
 #include "wayland-client-protocol.h"
 #include "xdg-shell-client-protocol.h"
@@ -2492,6 +2493,49 @@ void _glfwFocusWindowWayland(_GLFWwindow* window)
     }
 
     xdg_activation_token_v1_commit(window->wl.activationToken);
+}
+
+void _glfwDragWindowWayland(_GLFWwindow* window)
+{
+    xdg_toplevel_move(window->wl.xdg.toplevel, _glfw.wl.seat, _glfw.wl.serial);
+}
+
+void _glfwResizeWindowWayland(_GLFWwindow* window, int border)
+{
+    int wlBorder;
+    switch (border)
+    {
+        case GLFW_WINDOW_LEFT:
+            wlBorder = WL_SHELL_SURFACE_RESIZE_LEFT;
+            break;
+        case GLFW_WINDOW_TOP:
+            wlBorder = WL_SHELL_SURFACE_RESIZE_TOP;
+            break;
+        case GLFW_WINDOW_RIGHT:
+            wlBorder = WL_SHELL_SURFACE_RESIZE_RIGHT;
+            break;
+        case GLFW_WINDOW_BOTTOM:
+            wlBorder = WL_SHELL_SURFACE_RESIZE_BOTTOM;
+            break;
+        case GLFW_WINDOW_TOPLEFT:
+            wlBorder = WL_SHELL_SURFACE_RESIZE_TOP_LEFT;
+            break;
+        case GLFW_WINDOW_TOPRIGHT:
+            wlBorder = WL_SHELL_SURFACE_RESIZE_TOP_RIGHT;
+            break;
+        case GLFW_WINDOW_BOTTOMLEFT:
+            wlBorder = WL_SHELL_SURFACE_RESIZE_BOTTOM_LEFT;
+            break;
+        case GLFW_WINDOW_BOTTOMRIGHT:
+            wlBorder = WL_SHELL_SURFACE_RESIZE_BOTTOM_RIGHT;
+			break;
+		default:
+			assert(GLFW_FALSE);
+    }
+    xdg_toplevel_resize(window->wl.xdg.toplevel,
+                        _glfw.wl.seat,
+                        _glfw.wl.serial,
+                        wlBorder);
 }
 
 void _glfwSetWindowMonitorWayland(_GLFWwindow* window,

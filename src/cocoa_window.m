@@ -1239,6 +1239,15 @@ void _glfwFocusWindowCocoa(_GLFWwindow* window)
     } // autoreleasepool
 }
 
+void _glfwDragWindowCocoa(_GLFWwindow* window)
+{
+    [window->ns.object performWindowDragWithEvent:[NSApp currentEvent]];
+}
+
+void _glfwResizeWindowCocoa(_GLFWwindow* window, int border)
+{
+}
+
 void _glfwSetWindowMonitorCocoa(_GLFWwindow* window,
                                 _GLFWmonitor* monitor,
                                 int xpos, int ypos,
